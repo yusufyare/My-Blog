@@ -1,0 +1,19 @@
+
+<h2>Add a new comment</h2>
+<form action="{% url "blog:post_comment" post.id %}" method="post" class="p-4 border rounded shadow-sm bg-dark mb-4">
+    <div class="left mb-3">
+    {{ form.name.as_field_group }}
+    </div>
+    <div class="left mb-3">
+    {{ form.email.as_field_group }}
+    </div>
+    <div class="left mb-3">
+         {{ form.body.as_field_group }}
+        {% csrf_token %}
+    </div>
+   
+    <div class="d-grid gap-2 d-grid-md-block">
+        <p><input type="submit" value="Add comment" class="btn btn-primary btn-lg"></p>
+    </div>
+    
+</form>
