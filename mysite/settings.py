@@ -20,6 +20,7 @@ import django
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -98,21 +99,14 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# Database configuration
 DATABASES = {
-   
-    
-    'default': {
-        
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': config('DB_NAME'),
-            'USER': config('DB_USER'),
-            'PASSWORD': config('DB_PASSWORD'),
-            'HOST': config('DB_HOST'),
-            'PORT': config('DB_PORT'),
-            'default': dj_database_url.parse(os.environ.get('postgresql://my_blog_db_12jg_user:KX2eTHMsXeykkSwfh2JP1VSGgFPHzWfn@dpg-d71t0r8gjchc739p0f5g-a/my_blog_db_12jg'))
-
-    }
-
+    'default': dj_database_url.parse(
+        os.environ.get(
+            'DATABASE_URL',  # Name of env variable on Render
+             # Fallback for local dev
+        )
+    )
 }
 
 
